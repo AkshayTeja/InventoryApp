@@ -3,15 +3,13 @@
 import Image from "next/image"
 import React,{useState,useEffect} from "react"
 import { collection, addDoc, getDoc, querySnapshot, query, onSnapshot, deleteDoc, doc } from "firebase/firestore" 
-import {db} from "./firebase"
+import { db } from "../lib/firebase.js";
+
 
 export default function Home(){
   const [items,setItems] = useState([
-    {name: "Coffee",price: 4.95},
-    {name: "Movie",price: 4.95},
-    {name: "Candy",price: 4.95},
   ]);
-  const [newItem,setNewItem]=useState({name: " ",price: " "})
+  const [newItem,setNewItem]=useState({name: "",price: ""})
   const [total,setTotal]=useState(0)
 
 //Add item to database
@@ -23,7 +21,7 @@ const addItem = async (e) => {
       name: newItem.name.trim(),
       price: newItem.price,
     });
-    setNewItem({name: " ",price: " "});
+    setNewItem({name: "",price: ""});
   }
 };
 
